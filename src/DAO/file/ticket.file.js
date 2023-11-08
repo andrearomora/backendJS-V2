@@ -3,7 +3,7 @@ import FileManager from "./file.manager.js"
 export default class Ticket extends FileManager {
 
     constructor(filename= './db.tickets.json'){
-        ecommerce(filename)
+        super(filename)
     }
 
     getTickets = async () => { return await this.get() }

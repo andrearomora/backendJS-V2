@@ -12,3 +12,4 @@ mongoose.set('strictQuery', false)
 const chatModel = mongoose.model(chatCollection, chatSchema)
 
 export default chatModel
+//////////////////////////////  

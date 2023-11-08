@@ -3,7 +3,7 @@ import FileManager from "./file.manager.js"
 export default class Cart extends FileManager {
 
     constructor(filename= './db.carts.json'){
-        ecommerce(filename)
+        super(filename)
     }
 
     getCarts = async () => { return await this.get() }

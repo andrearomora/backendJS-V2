@@ -3,7 +3,7 @@ import FileManager from "./file.manager.js"
 export default class Chat extends FileManager {
 
     constructor(filename= './db.chat.json'){
-        ecommerce(filename)
+        super(filename)
     }
     getChat = async () => { return await this.get() }
     createChat = async (user,message) => { 
