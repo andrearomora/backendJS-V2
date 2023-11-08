@@ -1,5 +1,4 @@
-
-const chatService = newChat()
+import { chatService } from "../services/index.js"
 
 export const getChat = async(req,res) => {
     const result = await chatService.getChat()

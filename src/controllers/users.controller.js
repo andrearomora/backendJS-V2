@@ -1,19 +1,18 @@
-
-const usersService = newUser()
+import { userService } from "../services/index.js"
 
 export const getUsers = async(req,res) => {
-    const result = await usersService.getUsers()
+    const result = await userService.getUsers()
     res.send({status: 'success', payload: result})
 }
 
 export const getUserById = async(req,res) => {
     const { uid } = req.params
-    const result = await usersService.getUserById(uid)
+    const result = await userService.getUserById(uid)
     res.send({status: 'success', payload: result})
 }
 
 export const saveUser = async(req,res) => {
     const user = req.body
-    const result = await usersService.saveUser(user)
+    const result = await userService.saveUser(user)
     res.send({status: 'success', payload: result})
 }
