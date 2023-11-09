@@ -4,6 +4,7 @@ import __dirname from './utils.js'
 import usersRouter from './routes/users.router.js'
 import productRouter from './routes/products.router.js'
 import cartRouter from './routes/carts.router.js'
+import sessionRouter from './routes/session.router.js'
 
 
 const app =  express()
@@ -16,6 +17,7 @@ app.use(express.urlencoded({extended : true}))
 // app.set('views', __dirname + '/views')
 // app.set('view engine', 'handlebars')
 
+app.use('/', sessionRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
