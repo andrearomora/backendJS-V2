@@ -12,5 +12,9 @@ export default class ProductRepository {
         const productToInsert = new ProductDTO(product)
         return await this.dao.createProduct(productToInsert) 
     }
-
+    updateProduct = async (pid, product) => {
+        let productToUpdate = this.getProductById(pid)
+        productToUpdate = product
+        return await this.dao.updateProduct(productToUpdate)
+    }
 }

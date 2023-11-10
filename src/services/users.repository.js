@@ -12,5 +12,5 @@ export default class UserRepository {
         const userToInsert = new UserDTO(user)
         return await this.dao.saveUser(userToInsert) 
     }
-
+    
 }

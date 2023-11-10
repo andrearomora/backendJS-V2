@@ -20,6 +20,8 @@ export const getProductById = async(req,res) => {
 export const updateProduct = async(req,res) => {
     const { pid } = req.params
     const product = req.body
+
+    console.log("controller" + JSON.parse(product));
     const result = await productService.updateProduct(pid, product)
     res.send({status: 'success', payload: result})
 }
