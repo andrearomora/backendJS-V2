@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const CartModel = mongoose.model('carts', new mongoose.Schema({
     products: [{
-        productId: {
+        product: {
             type: mongoose.SchemaTypes.ObjectId,
             ref:'products'
         },

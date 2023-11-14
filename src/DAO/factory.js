@@ -12,11 +12,10 @@ console.log(`Persistence with ${config.persistence}`);
 switch (config.persistence) {
     case 'MONGO':
 
-        mongoose.connect(config.dbURL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            dbName: config.dbName
-        })
+        mongoose.connect(config.dbURL, {dbName: config.dbName})
+            .then(()=> console.log('DB Connected!!'))
+            .catch((e) => {throw 'DB can not connect'})
+
         const {default: UserMongo} = await import('./mongo/users.mongo.js')
         const {default: CartMongo} = await import('./mongo/carts.mongo.js')
         const {default: ProductMongo} = await import('./mongo/products.mongo.js')
@@ -47,5 +46,6 @@ switch (config.persistence) {
 
         break;
     default:
+        throw 'PERSISTENCE is not defined'
         break;
 }

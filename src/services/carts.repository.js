@@ -12,18 +12,27 @@ export default class CartRepository {
         return await this.dao.createCart(cartToInsert)
     }
     getCartById = async (cid) => { return await this.dao.getCartById(cid)}
-    deleteCart = async (cid) => { return await this.dao.deleteOne(cid) }
+    deleteCart = async (cid) => { return await this.dao.deleteCart(cid) }
     addProductCart = async(cid,pid,quantity) => {
         const cart = await this.getCartById(cid)
-        const idx = cart.products.findIndex(a => a.id == pid)
-        
-        if (cart.products[idx]){cart.products[idx].quantity = quantity}
-        else{
-            let newProduct
-            newProduct.productId = pid
-            newProduct.quantity = quantity 
-            cart.products.push(newProduct)
+        const cartProducts = cart.products
+        let exist = false
+
+        await cartProducts.forEach( async product => {
+            if( product.product._id.toString() == pid) {
+                product.quantity = quantity
+                exist = true
             }
+        })
+
+        if(exist==false){
+            console.log(pid)
+            const newProd = {
+                product: pid,
+                quantity: quantity
+            }
+            cart.products.push(newProd)
+        }
 
         return await this.dao.updateCart(cid, cart)
     }
@@ -31,7 +40,8 @@ export default class CartRepository {
 
         const cart = await this.getCartById(cid)
         const cartProducts = cart.products
-        const newCartProducts = cartProducts.filter((item) => item._id !== pid)
+        const newCartProducts = cartProducts.filter((item) => item.product._id.toString() !== pid)
+        console.log(newCartProducts)
         cart.products = newCartProducts
 
         await cart.save()
@@ -39,7 +49,7 @@ export default class CartRepository {
     }
 
     purchaseCart = async(cid) => {
-        const result = await cartsService.deleteCart(cid)
+        const result = await this.dao.deleteCart(cid)
         res.send({status: 'success', payload: result})
     }
 
