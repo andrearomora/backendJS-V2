@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { register, login, privateUser, errorUser, github, githubCallback } from '../controllers/session.controller.js'
+import { register, login, privateUser, errorUser, github, githubCallback, current } from '../controllers/session.controller.js'
 import { passportJWT } from '../utils.js'
 import passport from 'passport'
 
@@ -34,6 +34,10 @@ router.post(
     login
     )
 router.get('/private', passportJWT(), privateUser)
+router.get('/current', passport.authenticate('jwt', {
+    failureRedirect: '/session/current-error'
+    }),
+    current)
 
 router.get('/error', errorUser)
 

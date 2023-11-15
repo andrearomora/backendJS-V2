@@ -1,4 +1,4 @@
-import { generateToken } from "../utils.js"
+import { generateToken, extractCookie, extractUserFromToken } from "../utils.js"
 import config from "../config/config.js"
 
 export const github = (req,res) => {
@@ -35,4 +35,16 @@ export const errorUser = async (req, res) => {
     res.json({
         error:true
     })
+}
+
+export const current = async (req, res) => {
+    const user = {
+        _id: req.user._id,
+        email:  req.user.email,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name,
+        age: req.user.age,
+        role: req.user.role
+    }
+    res.json(user)
 }
