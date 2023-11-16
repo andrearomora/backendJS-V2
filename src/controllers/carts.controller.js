@@ -1,4 +1,5 @@
 import { cartService } from "../services/index.js"
+import productService from '../services/products.repository.js'
 
 export const getCarts = async(req,res) => {
     const result = await cartService.getCarts()
@@ -49,7 +50,8 @@ export const deleteProductCart = async(req,res) => {
 
 export const purchaseCart = async(req,res) => {
     const {cid} = req.params
-
-    const result = await cartService.purchaseCart(cid)
+    const user = req.user
+    
+    const result = await cartService.purchaseCart(cid, user)
     res.send({status: 'success', payload: result})
 }

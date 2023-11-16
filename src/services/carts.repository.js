@@ -1,4 +1,7 @@
 import CartDTO from '../DAO/DTO/carts.dto.js'
+import productService from './products.repository.js'
+import ticketService from './tickets.repository.js'
+
 
 export default class CartRepository {
 
@@ -48,8 +51,39 @@ export default class CartRepository {
         return await this.dao.updateCart(cid, cart)
     }
 
-    purchaseCart = async(cid) => {
-        const result = await this.dao.deleteCart(cid)
+    purchaseCart = async(cid, user) => {
+
+        const cart = await this.getCartById(cid)
+
+        const productsToBuy = []
+        const remainingProducts = []
+        let total = 0
+        /*
+        *La compra debe corroborar el stock del producto al momento de finalizarse
+        Si el producto tiene suficiente stock para la cantidad indicada en el producto
+        del carrito, entonces restarlo del stock del producto y continuar
+        Si el producto no tiene suficiente stock para la cantidad indicada en el producto
+        del carrito, entonces no agregar el producto al proceso de compra. 
+        */
+        cart.products.forEach(p => {
+            let prod = productService.getProductById(p.product)
+
+            if (p.quantity <= prod.stock) {
+                productsToBuy.push(p)
+                prod.stock = prod.stock - p.quantity
+                total = total + (prod.price * p.quantity)
+                productService.updateProduct(prod)
+            }else{
+                remainingProducts.push(p)
+            }
+        })
+
+        cart.products = remainingProducts
+        await cart.save()
+
+        await ticketService.saveTicket(user, total, productsToBuy)
+
+        const result = await this.dao.updateCart(cid, cart)
         res.send({status: 'success', payload: result})
     }
 

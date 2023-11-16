@@ -67,11 +67,3 @@ export const auth = (role) => {
 export const extractCookie = req => {
     return (req && req.cookies) ? req.cookies[KEY_COOKIE_JWT] : null
 }
-
-export const extractUserFromToken = (req, token) => {
-    jwt.verify(token, PRIVATE_KEY, (error, credentials) => {
-        if(error) return res.status(403).send({error: 'Not user'})
-        req.user = credentials.user
-        return req.user
-    })
-}
