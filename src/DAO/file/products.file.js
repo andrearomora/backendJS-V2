@@ -14,4 +14,3 @@ export default class Product extends FileManager {
     }
     deleteProduct = async (id) => {return await this.delete(id)}
 }
-///AJUSTAR MONGO ARCHIVO PARA PRODUCTS

@@ -5,9 +5,9 @@ import { getProducts, createProduct, getProductById, updateProduct, deleteProduc
 const router = Router()
 
 router.get('/', getProducts)
-router.post('/', passportJWT(), auth('admin'), createProduct)
+router.post('/', passportJWT(), auth('admin' || 'premium'), createProduct)
 router.get('/:pid', getProductById)
-router.put('/:pid', passportJWT(), auth('admin'), updateProduct)
-router.delete('/:pid', passportJWT(), auth('admin'), deleteProduct)
+router.put('/:pid', passportJWT(), auth('admin' || 'premium'), updateProduct)
+router.delete('/:pid', passportJWT(), auth('admin' || 'premium'), deleteProduct)
 
 export default router

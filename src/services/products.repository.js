@@ -2,20 +2,33 @@ import ProductDTO from '../DAO/DTO/products.dto.js'
 
 export default class ProductRepository {
 
-    constructor(dao) {
-        this.dao = dao
+    constructor(productDAO) {
+        this.productDAO = productDAO;
     }
 
-    getProducts = async () => { return await this.dao.getProducts() }
-    getProductById = async (tid) => { return await this.dao.getProductById(tid) }
+    getProducts = async () => { return await this.productDAO.getProducts() }
+    getProductById = async (tid) => { return await this.productDAO.getProductById(tid) }
+    getProductByCode = async(pcode) => {
+        const products = await this.productDAO.getProducts()
+        products.forEach(p => {
+            if(p.code === pcode){
+                return p
+            }
+        })
+        res.send("Product not found")
+    }
     createProduct = async (product) => { 
+        const productExist = await this.productDAO.getProductByCode(product.code);
+        if (productExist) {
+            res.send("Product already exists")
+          }
         const productToInsert = new ProductDTO(product)
-        return await this.dao.createProduct(productToInsert) 
+        return await this.productDAO.createProduct(productToInsert) 
     }
     updateProduct = async (pid, product) => {
-        return await this.dao.updateProduct(pid, product)
+        return await this.productDAO.updateProduct(pid, product)
     }
     deleteProduct = async (pid) => {
-        return await this.dao.deleteProduct(pid)
+        return await this.productDAO.deleteProduct(pid)
     }
 }
