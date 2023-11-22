@@ -1,23 +1,8 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-
+@charset "UTF-8";
+/**/
+/*TEXT*/
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
-
-.center {
-  text-align: center;
-  margin: 0 auto; }
 h1 {
   font-size: 30px;
   font-weight: 700; }
@@ -55,7 +40,6 @@ p, label, option, input, select {
   margin: 0 auto; }
 
 /*END TEXT*/
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -79,7 +63,6 @@ p, label, option, input, select {
   font-size: 24px; }
 
 /* FIN HEADER*/
-
 /*FOOTER*/
 .footer {
   background-color: #2C2C2C;
@@ -166,3 +149,455 @@ p, label, option, input, select {
     transform: translatey(0px); } }
 
 /*FIN FOOTER*/
+/*BODY*/
+.contenedor {
+  margin-top: 50px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 30px; }
+
+.contenedor__titulos {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px; }
+
+@media (max-width: 600px) {
+  .contenedor {
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 30px; } }
+
+/*FIN BODY*/
+/*HOME*/
+/*BANNER*/
+.homeBanner {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-items: flex-end;
+  padding: 0% 10% 0% 10%;
+  text-align: right;
+  width: 100%;
+  height: 85vh;
+  background-image: url(../img/bolsas-de-algodon-en-bogota-tote-bag.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  align-items: flex-end; }
+  .homeBanner a {
+    width: 200px; }
+    @media (max-width: 600px) {
+      .homeBanner a {
+        transform: scaleX(-1);
+        height: 30px;
+        width: auto;
+        padding: 0 10px;
+        font-weight: 530; } }
+    @media (max-width: 600px) {
+      .homeBanner a:hover {
+        transform: scaleX(-1);
+        background-color: #01a27f;
+        height: 30px;
+        width: auto;
+        padding: 0 10px;
+        font-weight: 530; } }
+  @media (max-width: 600px) {
+    .homeBanner {
+      display: flex;
+      justify-items: center;
+      margin: 0px auto;
+      text-align: center;
+      width: 100%;
+      height: 85vh;
+      background-image: url(../img/bolsas-de-algodon-en-bogota-tote-bag.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: initial;
+      transform: scaleX(-1);
+      align-items: center; } }
+
+.homeBanner__titulo {
+  font-size: 35px; }
+  @media (max-width: 600px) {
+    .homeBanner__titulo {
+      font-size: 35px;
+      transform: scaleX(-1);
+      background: rgba(245, 245, 245, 0.5); } }
+
+.homeBanner__texto {
+  margin-left: 50%;
+  font-size: 20px; }
+  @media (max-width: 600px) {
+    .homeBanner__texto {
+      margin-left: 0%;
+      font-size: 20px;
+      transform: scaleX(-1);
+      background: rgba(245, 245, 245, 0.5); } }
+
+/*BENEFICIOS*/
+.homeBeneficios {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 15vh;
+  text-align: center;
+  background-color: whitesmoke; }
+  @media (max-width: 600px) {
+    .homeBeneficios {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      padding: 30px;
+      text-align: center;
+      background-color: whitesmoke; } }
+
+.homeBeneficios__beneficio, .contacto__datos div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 20%; }
+  .homeBeneficios__beneficio i, .contacto__datos div i {
+    font-size: 40px; }
+  .homeBeneficios__beneficio span, .contacto__datos div span {
+    font-size: 20px;
+    padding-left: 5%; }
+  @media (max-width: 800px) {
+    .homeBeneficios__beneficio, .contacto__datos div {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      width: 80%; }
+      .homeBeneficios__beneficio i, .contacto__datos div i {
+        font-size: 30px; }
+      .homeBeneficios__beneficio span, .contacto__datos div span {
+        font-size: 15px;
+        padding-left: 0%; } }
+
+/*CATEGORÍAS*/
+.homeCategoria {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 5% 15%; }
+  @media (max-width: 600px) {
+    .homeCategoria {
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 5% 10%; } }
+
+.homeCategoria__titulo {
+  text-align: center; }
+
+.homeCategoria__titulo__pre {
+  font-size: 24px; }
+
+.homeCategoria__titulo__categorias {
+  border-bottom: #11b28e solid 2px;
+  margin-top: 10px;
+  padding-bottom: 2%; }
+
+.homeCategoria__categorias {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; }
+  .homeCategoria__categorias a {
+    width: 200px; }
+
+.homeCategoria__categorias__todas {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  @media (max-width: 800px) {
+    .homeCategoria__categorias__todas {
+      flex-direction: column; } }
+
+.homeCategoria__categorias__una {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 10%; }
+
+.homeCategoria__categorias__una__img {
+  height: 250px; }
+
+.homeCategoria__categorias__una__pie, .homeCategoria__categorias__una__pie:hover {
+  text-decoration: none;
+  color: #2C2C2C;
+  font-size: 20px;
+  font-weight: 500; }
+
+/*PROPUESTA DE VALOR*/
+.homePropuestaValor {
+  height: 100vh;
+  background-image: url(../img/bolsas-de-algodon-en-bogota.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  display: flex;
+  align-items: center; }
+
+.homePropuestaValor__contenido {
+  padding: 0% 10%; }
+
+.homePropuestaValor__lista {
+  padding: 10% 0%;
+  list-style: none; }
+
+.homePropuestaValor__lista__elemento {
+  display: flex; }
+
+.homePropuestaValor__lista__elemento__txt {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column; }
+  @media (max-width: 800px) {
+    .homePropuestaValor__lista__elemento__txt {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column; } }
+
+.homePropuestaValor__icono {
+  color: #11b28e;
+  border: 2px solid #11b28e;
+  font-size: 15px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  @media (max-width: 800px) {
+    .homePropuestaValor__icono {
+      color: #11b28e;
+      border: 2px solid #11b28e;
+      font-size: 20px;
+      height: 52px;
+      width: 45px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center; } }
+
+.homePropuestaValor__icono--grande {
+  color: #11b28e;
+  font-size: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.desktop {
+  visibility: visible;
+  position: relative; }
+  @media (max-width: 800px) {
+    .desktop {
+      visibility: hidden;
+      position: absolute;
+      height: 0%; } }
+
+.mobile {
+  visibility: hidden;
+  position: absolute; }
+  @media (max-width: 800px) {
+    .mobile {
+      visibility: visible;
+      position: relative;
+      border: 1px solid whitesmoke; } }
+
+.buyerPersona {
+  height: 20vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .buyerPersona a {
+    margin: 0 3%; }
+  @media (max-width: 600px) {
+    .buyerPersona {
+      height: 30vh;
+      background-color: whitesmoke;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10%; }
+      .buyerPersona a {
+        margin: 3% 0%;
+        height: 30px;
+        width: 100%;
+        padding: 0;
+        font-weight: 530; }
+        .buyerPersona a:hover {
+          margin: 3% 0%;
+          background-color: #01a27f;
+          height: 30px;
+          width: 100%;
+          padding: 0;
+          font-weight: 530; } }
+
+/*FIN HOME*/
+/*SOBRE NOSOTROS*/
+.sobreNosotros__titular {
+  background-color: #2C2C2C;
+  margin-top: 0px;
+  padding: 50px;
+  color: whitesmoke;
+  text-align: center; }
+
+/*FIN SOBRE NOSOTROS*/
+/*COOKIES*/
+.cookies__actualizacion {
+  font-style: italic;
+  color: #aeadad;
+  padding: 10px 0px 50px 0px; }
+
+@media (max-width: 600px) {
+  .cookies {
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 30px; } }
+
+/*FIN COOKIES*/
+/*CONTACTO*/
+.contacto {
+  padding: 50px 0px 0px opx; }
+
+.contacto__2input {
+  display: flex;
+  flex-direction: row; }
+
+.contacto__1input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2% 1%; }
+
+.contacto__2input__input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2% 1%; }
+
+.contacto .btn {
+  margin: 2% 1%; }
+
+.contacto-padding {
+  padding: 5% 1%; }
+
+.contacto__datos {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px; }
+
+/*FIN CONTACTO*/
+/*TIENDA*/
+.contenedorTienda {
+  margin: 30px 10%; }
+  .contenedorTienda .product-item {
+    min-height: 450px;
+    border: none;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0; }
+    .contenedorTienda .product-item .product {
+      width: 100%;
+      height: 350px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer; }
+      .contenedorTienda .product-item .product img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+      .contenedorTienda .product-item .product .icons .icon {
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.6s ease;
+        transform: rotate(180deg);
+        cursor: pointer; }
+        .contenedorTienda .product-item .product .icons .icon:hover {
+          background-color: #11b28e;
+          color: #fff; }
+        .contenedorTienda .product-item .product .icons .icon:nth-last-of-type(3) {
+          transition-delay: 0.2s; }
+        .contenedorTienda .product-item .product .icons .icon:nth-last-of-type(2) {
+          transition-delay: 0.15s; }
+        .contenedorTienda .product-item .product .icons .icon:nth-last-of-type(1) {
+          transition-delay: 0.1s; }
+    .contenedorTienda .product-item:hover .product .icons .icon {
+      transform: translateY(-60px); }
+    .contenedorTienda .product-item .tag {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 500;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      padding: 0 0.4rem; }
+    .contenedorTienda .product-item .title {
+      font-size: 0.95rem;
+      letter-spacing: 0.5px; }
+    .contenedorTienda .product-item .fa-star {
+      font-size: 0.65rem;
+      color: goldenrod; }
+    .contenedorTienda .product-item .price {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-weight: 600; }
+
+.fw-800 {
+  font-weight: 800; }
+
+.bg-green {
+  background-color: #11b28e;
+  color: #fff; }
+
+.bg-black {
+  background-color: #1f1d1d;
+  color: #fff; }
+
+.bg-yellow {
+  background-color: goldenrod;
+  color: #fff; }
+
+.categories {
+  display: flex;
+  justify-content: center;
+  list-style: none; }
+  .categories a {
+    text-decoration: none;
+    color: #2C2C2C;
+    margin: 20px auto;
+    padding: 10px 5%;
+    font-weight: 800;
+    border-bottom: solid transparent; }
+    .categories a:hover {
+      border-bottom: #11b28e solid; }
+    .categories a .categorieFocus {
+      border-bottom: #11b28e solid; }
+
+/*FIN TIENDA*/
+/**/
+.cookies p, .cookies ol, .cookies li {
+  font-size: 14px; }
+
+/**/

@@ -44,9 +44,9 @@ router.get('/shop', async (req, res) => {
     // result.user =  req.session.user
     // result.admin = false
     // if(req.session.user.rol == "admin") result.admin = true
-    const result = await productService.getProducts()
-    res.render('shop', result)
-    console.log(JSON.stringify(result))
+    const products = await productService.getProducts()
+    res.render('shop', {products})
+    console.log(JSON.stringify(products))
 
 })
 
