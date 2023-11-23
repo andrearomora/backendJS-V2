@@ -449,29 +449,8 @@ p, label, option, input, select {
           font-weight: 530; } }
 
 /*FIN HOME*/
-/*SOBRE NOSOTROS*/
-.sobreNosotros__titular {
-  background-color: #2C2C2C;
-  margin-top: 0px;
-  padding: 50px;
-  color: whitesmoke;
-  text-align: center; }
 
-/*FIN SOBRE NOSOTROS*/
-/*COOKIES*/
-.cookies__actualizacion {
-  font-style: italic;
-  color: #aeadad;
-  padding: 10px 0px 50px 0px; }
 
-@media (max-width: 600px) {
-  .cookies {
-    margin-top: 30px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 30px; } }
-
-/*FIN COOKIES*/
 /*CONTACTO*/
 .contacto {
   padding: 50px 0px 0px opx; }
