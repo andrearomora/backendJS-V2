@@ -1,6 +1,8 @@
-import { generateToken } from "../utils.js"
+import { generateToken, authToken } from "../utils.js"
+import { saveUser } from "./users.controller.js"
 import config from "../config/config.js"
 
+const cookieJWT = config.keyCookieForJWT
 
 export const github = (req,res) => {
     (req, res) => {}
@@ -10,10 +12,10 @@ export const githubCallback = (req, res) => {
     const token = generateToken(req.user)
     req.user.token = token
     console.log('Callback: ', req.user)
-    res.cookie(config.keyCookieForJWT, req.user.token).redirect('/')
+    res.cookie(cookieJWT, req.user.token).redirect('/')
 }
 export const register = async(req,res) => {
-        res.json({status: 'success'})
+        return res.redirect('/login')
     }
 
 export const login = async(req,res) => {
@@ -22,9 +24,22 @@ export const login = async(req,res) => {
         }
 
         const token = generateToken(req.user)
-
-        res.json({token})
+        req.user.token = token
+        return res.cookie(cookieJWT, req.user.token).redirect('/')
     }
+
+// export const isAuthenticated = (req, res, next) => {
+    
+//     const token = req.cookies[cookieJWT]
+//     console.log(token)
+//     if (!token) {
+//       return res.redirect('/login');
+//     }
+  
+//     return next()
+    
+//   };
+
 
 export const privateUser = async (req, res) => {
     res.json({

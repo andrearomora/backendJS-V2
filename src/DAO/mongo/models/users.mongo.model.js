@@ -6,12 +6,12 @@ const UsersModel = new mongoose.model('users', new mongoose.Schema({
     last_name: { type: String, require: true },
     age: { type: Number },
     password: { type: String, require: true },
+    social: { type: String, require: true },
+    role: { type: String, enum: ["admin","user","premium"]},
     cart: {
         type: mongoose.SchemaTypes.ObjectId,
         ref:'carts'
-    },
-    social: { type: String, require: true },
-    role: { type: String, enum: ["admin","user","premium"]}
+    }
 }))
 
 export default UsersModel

@@ -10,9 +10,9 @@ export default class CartRepository {
     }
 
     getCarts = async () => { return await this.dao.getCarts() }
-    createCart = async (cart) => {
-        const cartToInsert = new CartDTO(cart)
-        return await this.dao.createCart(cartToInsert)
+    createCart = async () => {
+        //const cartToInsert = new CartDTO(cart)
+        return await this.dao.createCart()
     }
     getCartById = async (cid) => { return await this.dao.getCartById(cid)}
     deleteCart = async (cid) => { return await this.dao.deleteCart(cid) }
@@ -23,7 +23,7 @@ export default class CartRepository {
 
         await cartProducts.forEach( async product => {
             if( product.product._id.toString() == pid) {
-                product.quantity = quantity
+                product.quantity += quantity
                 exist = true
             }
         })

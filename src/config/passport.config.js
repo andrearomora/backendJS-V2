@@ -3,19 +3,12 @@ import jwt from 'passport-jwt'
 import local from 'passport-local'
 import config from './config.js'
 import GithubStrategy from 'passport-github2'
-import { userService } from '../services/index.js'
+import { userService, cartService } from '../services/index.js'
 import { createHash, extractCookie, isValidPassword } from '../utils.js'
 
 const PRIVATE_KEY = config.jwtPrivateKEY
 const LocalStrategy = local.Strategy
-//const GithubStrategy = github.Strategy
 
-// const headerExtractor = req => {
-//     const token = req.headers['AUTH'] ?? ''
-
-//     console.log('HEADER EXTRACTOR: ', token)
-//     return token
-// }
 
 const initializePassport = () => {
 
@@ -39,6 +32,7 @@ const initializePassport = () => {
                         email,
                         last_name: profile._json.bio,
                         age: profile._json.public_repos,
+                        cart: await cartService.createCart(),
                         social: 'github',
                         role: 'user',
                         password: ''
@@ -72,6 +66,7 @@ const initializePassport = () => {
                 last_name, 
                 age,
                 password:createHash(password), 
+                cart: await cartService.createCart(),
                 social: 'local', 
                 role}
             const result =  await userService.saveUser(newUser)

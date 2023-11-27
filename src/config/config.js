@@ -7,5 +7,7 @@ export default {
     dbURL: process.env.MONGO_URL ,
     dbName: process.env.MONGO_DBNAME,
     jwtPrivateKEY: process.env.JWT_PRIVATE_KEY,
-    keyCookieForJWT: process.env.KEY_COOKIE_JWT
+    keyCookieForJWT: process.env.KEY_COOKIE_JWT,
+    mailGmail: process.env.MAIL_GMAIL,
+    passGmail: process.env.PASS_GMAIL
 }

@@ -6,7 +6,7 @@ export default class ProductRepository {
         this.productDAO = productDAO;
     }
 
-    getProducts = async () => { return await this.productDAO.getProducts() }
+    getProducts = async (categorySort) => { return await this.productDAO.getProducts(categorySort) }
     getProductById = async (tid) => { return await this.productDAO.getProductById(tid) }
     getProductByCode = async(pcode) => {
         const products = await this.productDAO.getProducts()

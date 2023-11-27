@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { register, login, privateUser, errorUser, github, githubCallback, current } from '../controllers/session.controller.js'
-import { passportJWT } from '../utils.js'
+import { passportJWT, authToken } from '../utils.js'
 import passport from 'passport'
+import config from '../config/config.js'
 
 const router = Router()
 
@@ -33,6 +34,15 @@ router.post(
     }),
     login
     )
+
+  router.get(
+    "/logout",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        res.clearCookie(config.keyCookieForJWT).redirect("/login");
+    }
+  );
+
 router.get('/private', passportJWT(), privateUser)
 router.get('/current', passport.authenticate('jwt', {
     failureRedirect: '/session/current-error'

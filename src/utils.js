@@ -48,21 +48,21 @@ export const auth = (role) => {
         return next()
     }
 }
-// export const authToken = (req, res, next) => {
-//     const authHeader = req.headers.auth
 
-//     if(!authHeader){
-//         return res.status(401).send({error: 'Not Auth'})
-//     }
+export const authToken = (req, res, next) => {
 
-//     const token = authHeader
+    const authHeader = req.cookies[KEY_COOKIE_JWT]
 
-//     jwt.verify(token, 'secretForJWT', (error, credentials) => {
-//         if(error) return res.status(403).send({error: 'Not authorized'})
-//         req.user = credentials.user
-//         next()
-//     })
-// }
+    if(!authHeader){
+        return res.status(401).send({error: 'Not Auth'})
+    }
+    const token = authHeader
+    jwt.verify(token, PRIVATE_KEY, (error, credentials) => {
+        if(error) return res.status(403).send({error: 'Not authorized'})
+        req.user = credentials.user
+        next()
+    })
+}
 
 export const extractCookie = req => {
     return (req && req.cookies) ? req.cookies[KEY_COOKIE_JWT] : null

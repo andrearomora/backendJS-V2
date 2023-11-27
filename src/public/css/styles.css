@@ -167,7 +167,12 @@ p, label, option, input, select {
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 30px; } }
-
+.icon a{
+  color: #2C2C2C;
+  }
+  .icon a:hover{
+    color: whitesmoke
+    }
 /*FIN BODY*/
 /*HOME*/
 /*BANNER*/

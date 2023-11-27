@@ -1,4 +1,5 @@
 import { cartService } from "../services/index.js"
+import __dirname from "../utils.js"
 import productService from '../services/products.repository.js'
 
 export const getCarts = async(req,res) => {
@@ -36,8 +37,8 @@ export const addProductCart = async(req,res) => {
     const {pid} = req.params
     const quantity = parseInt(req.body.quantity)
 
-    const result = await cartService.addProductCart(cid,pid,quantity)
-    res.send({status: 'success', payload: result})
+    await cartService.addProductCart(cid,pid,quantity)
+    return res.redirect(req.body.path)
 }
 
 export const deleteProductCart = async(req,res) => {

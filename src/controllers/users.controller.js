@@ -1,4 +1,5 @@
 import { userService } from "../services/index.js"
+//import { cartService } from "../services/index.js"
 
 export const getUsers = async(req,res) => {
     const result = await userService.getUsers()
@@ -13,6 +14,12 @@ export const getUserById = async(req,res) => {
 
 export const saveUser = async(req,res) => {
     const user = req.body
+    // const cart = await cartService.createCart()
+    // console.log(user);
+    // const cartId = cart._id
+    // user.cart = cartId.toString()
+    // console.log(cart);
+    // console.log(user);
     const result = await userService.saveUser(user)
     res.send({status: 'success', payload: result})
 }

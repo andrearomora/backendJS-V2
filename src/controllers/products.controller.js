@@ -1,7 +1,8 @@
 import { productService } from "../services/index.js"
 
 export const getProducts = async(req,res) => {
-    const result = await productService.getProducts()
+    const categorySort = req.params || "all"
+    const result = await productService.getProducts(categorySort)
     console.log(result)
     res.send({status: 'success', payload: result})
 }

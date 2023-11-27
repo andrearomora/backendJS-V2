@@ -1,25 +1,30 @@
 
     <main class="contenedorTienda">
+        {{log result}}
         <h1 class="center">Productos</h1>
         <ul class="categories">
-            <a href="#" class="categorieFocus"><li>TODOS</li></a>
-            <a href="#"><li>TOTE BAGS</li></a>
-            <a href="#"><li>AJUSTABLES</li></a>
+            <a href="/shop?category=all" class="categorieFocus"><li>TODOS</li></a>
+            <a href="/shop?category=totebags"><li>TOTE BAGS</li></a>
+            <a href="/shop?category=adjustables"><li>AJUSTABLES</li></a>
         </ul>
         <div class="row">
             {{#each result.products}}
                 <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
                     <div class="product"> <img src="{{this.thumbnail}}" alt="">
                         <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                            <li class="icon"><a href="/product/{{this._id}}"><span class="fas fa-expand-arrows-alt"></span><</a>/li>
-                            <li class="icon"><span class="fas fa-shopping-bag"></span></li>
+                            <li class="icon"><a href="/product/{{this._id}}"><span class="fas fa-expand-arrows-alt"></span></a></li>
+                            <form action="/api/carts/{{../result.cartId}}/product/{{this._id}}" method="post">
+                                <input type="hidden" value=1 name="quantity">
+                                <input type="hidden" value="/shop" name="path">
+                                <li class="icon"><button type="submit"><span class="fas fa-shopping-bag"></span></button></li>
+                            </form>
                         </ul>
                     </div>
-                    {{!-- <div class="tag bg-green">DISPONIBLE</div> --}}
                     <div class="title pt-4">{{this.title}}</div>
                     <div class="title pb-1"><em>Stock: {{this.stock}}</em></div>
                     <div class="price">$ {{this.price}}</div>
                 </div>
             {{/each}}
+            <span>{{result.cartId}}</span>
         </div>
     </main>
