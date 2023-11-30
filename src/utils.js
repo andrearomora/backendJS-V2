@@ -40,8 +40,7 @@ export const passportJWT = () => {
 
 export const auth = (role) => {
     return async(req, res, next) => {
-        const user = req.user?.user
-
+        const user = req.user
         if(!user) return res.status(401).send({error: "Unauthenticated"})
         if(user.role != role) return res.status(403).send({error: 'Unauthorized'})
 

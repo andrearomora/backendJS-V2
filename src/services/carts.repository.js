@@ -10,9 +10,8 @@ export default class CartRepository {
     }
 
     getCarts = async () => { return await this.dao.getCarts() }
-    createCart = async () => {
-        //const cartToInsert = new CartDTO(cart)
-        return await this.dao.createCart()
+    createCart = async (email) => {
+        return await this.dao.createCart(email)
     }
     getCartById = async (cid) => { return await this.dao.getCartById(cid)}
     deleteCart = async (cid) => { return await this.dao.deleteCart(cid) }

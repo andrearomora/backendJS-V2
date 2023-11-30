@@ -12,15 +12,15 @@ export const getTicketById = async(req,res) => {
 }
 
 export const saveTicket = async(req,res) => {
-    const user = req.body
-    const cart = req.body
-    const result = await ticketService.saveTicket(user,cart)
+    const user = req.user
+    const cartId = req.params
+    const result = await ticketService.saveTicket(user,cartId)
     res.send({status: 'success', payload: result})
 }
 
 export const updateTicket = async(req,res) => {
     const { tid } = req.params
-    const ticket = req.body
-    const result = await ticketService.updateTicket(tid, ticket)
+    const cartId = req.params
+    const result = await ticketService.updateTicket(tid, cartId)
     res.send({status: 'success', payload: result})
 }

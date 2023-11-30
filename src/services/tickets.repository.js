@@ -32,4 +32,8 @@ export default class TicketRepository {
          
     }
 
+    updateTicket = async() => {
+
+    }
+
 }

@@ -22,6 +22,11 @@ router.get('/register', async (req, res) => {
 router.get('/cart', passportJWT(), async (req, res) => {
     const cartId = req.user.cart
     const cart = await cartService.getCartById(cartId)
+
+    cart.products.forEach(prod => {
+        
+    });
+
     res.render('cart', {cart})
 })
 

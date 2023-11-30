@@ -8,8 +8,7 @@ export const getCarts = async(req,res) => {
 }
 
 export const createCart = async(req,res) => {
-    const cart = req.body
-    const result = await cartService.createCart(cart)
+    const result = await cartService.createCart()
     res.send({status: 'success', payload: result})
 }
 
