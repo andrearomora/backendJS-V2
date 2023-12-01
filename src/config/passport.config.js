@@ -32,7 +32,7 @@ const initializePassport = () => {
                         email,
                         last_name: profile._json.bio,
                         age: profile._json.public_repos,
-                        cart: await cartService.createCart(email),
+                        cart: await cartService.createCart(),
                         social: 'github',
                         role: 'user',
                         password: ''
@@ -66,10 +66,14 @@ const initializePassport = () => {
                 last_name, 
                 age,
                 password:createHash(password), 
-                cart: await cartService.createCart(email),
+                cart: await cartService.createCart(),
                 social: 'local', 
                 role}
             const result =  await userService.saveUser(newUser)
+
+            const cart = result.cart
+            cart.owner = result.email
+            cart.save()
 
             return done(null, result)
         } catch (e) {

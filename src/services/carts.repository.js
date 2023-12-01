@@ -10,8 +10,8 @@ export default class CartRepository {
     }
 
     getCarts = async () => { return await this.dao.getCarts() }
-    createCart = async (email) => {
-        return await this.dao.createCart(email)
+    createCart = async (cart) => {
+        return await this.dao.createCart(cart)
     }
     getCartById = async (cid) => { return await this.dao.getCartById(cid)}
     deleteCart = async (cid) => { return await this.dao.deleteCart(cid) }
@@ -23,6 +23,8 @@ export default class CartRepository {
         await cartProducts.forEach( async product => {
             if( product.product._id.toString() == pid) {
                 product.quantity += quantity
+                cart.items += quantity
+                cart.total += product.price * quantity
                 exist = true
             }
         })
@@ -33,6 +35,11 @@ export default class CartRepository {
                 product: pid,
                 quantity: quantity
             }
+
+            const prod = productService.getProductById(pid)
+            cart.items += quantity
+            cart.total += prod.price * quantity
+
             cart.products.push(newProd)
         }
 

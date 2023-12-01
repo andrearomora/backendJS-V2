@@ -1,9 +1,6 @@
 import mongoose from 'mongoose'
 
 const CartModel = mongoose.model('carts', new mongoose.Schema({
-    items: {type: Number},
-    total: {type: Number},
-    owner: {type: String},
     products: [{
         product: {
             type: mongoose.SchemaTypes.ObjectId,
@@ -11,7 +8,10 @@ const CartModel = mongoose.model('carts', new mongoose.Schema({
         },
         quantity: { type: Number}
     }],
-    default: []
+    default: [],
+    items: {type: Number, default: 0},
+    total: {type: Number, default: 0},
+    owner: {type: String},
 }))
 
 export default CartModel 
