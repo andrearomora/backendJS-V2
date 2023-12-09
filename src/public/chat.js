@@ -1,3 +1,5 @@
+import { logger } from '../config/logger.js'
+
 const socket = io()
 const chatbox = document.getElementById('chatbox')
 let user = sessionStorage.getItem('user') || ''
@@ -41,7 +43,7 @@ chatbox.addEventListener('keyup', event => {
 // Recibir Mensajes
 socket.on('logs', data => {
     const divLogs = document.getElementById('logs')
-    console.log(data)
+    logger.debug(data)
     let messages = ''
 
     data.forEach(msn => {

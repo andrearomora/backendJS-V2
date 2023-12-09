@@ -5,6 +5,7 @@ import config from './config.js'
 import GithubStrategy from 'passport-github2'
 import { userService, cartService } from '../services/index.js'
 import { createHash, extractCookie, isValidPassword } from '../utils.js'
+import { logger } from './logger.js'
 
 const PRIVATE_KEY = config.jwtPrivateKEY
 const LocalStrategy = local.Strategy
@@ -19,14 +20,14 @@ const initializePassport = () => {
             callbackURL: 'http://127.0.0.1:8080/session/githubcallback'
         }, 
         async (accesToken, refreshToken, profile, done) => {
-            console.log(profile)
+            logger.info(JSON.stringify(profile))
             try{
                 const email = profile._json.email
                 let user = await userService.getByEmail(email)
                 if(user){
-                    console.log('Loggin in.....  → ' + email)
+                    logger.info('Loggin in.....  → ' + email)
                 }else{
-                    console.log('User to register → ' + email)
+                    logger.info('User to register → ' + email)
                     const newUser = {
                         first_name: profile._json.name,
                         email,
@@ -37,8 +38,8 @@ const initializePassport = () => {
                         role: 'user',
                         password: ''
                     }
-                    user =  await userService.saveUser(newUser)
-                    console.log('user created: ' + user)
+                    user =  await userService.saveUser(JSON.stringify(newUser))
+                    logger.debug('user created: ' + JSON.stringify(user))
                 }
 
                 return done(null, user)
@@ -57,7 +58,7 @@ const initializePassport = () => {
         try {
             const user = await userService.getByEmail(email)
             if(user){
-                console.log('User already exist')
+                logger.info('User already exist')
                 return done(null, false)
             }
             const newUser = {
@@ -86,7 +87,7 @@ const initializePassport = () => {
     }, async(username, password, done) => {
         const user = await userService.getByEmail(username)
         if(!user){
-            console.log('User does not exist')
+            logger.info('User does not exist')
             return done(null, false)
         }
 

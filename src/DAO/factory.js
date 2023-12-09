@@ -1,5 +1,7 @@
 import config from "../config/config.js"
 import mongoose from 'mongoose'
+import { logger } from '../config/logger.js'
+
 
 export let User
 export let Cart
@@ -7,13 +9,13 @@ export let Product
 export let Chat
 export let Ticket
 
-console.log(`Persistence with ${config.persistence}`);
+logger.info(`Persistence with ${config.persistence}`)
 
 switch (config.persistence) {
     case 'MONGO':
 
         mongoose.connect(config.dbURL, {dbName: config.dbName})
-            .then(()=> console.log('DB Connected!!'))
+            .then(()=> logger.info('DB Connected!!'))
             .catch((e) => {throw 'DB can not connect'})
 
         const {default: UserMongo} = await import('./mongo/users.mongo.js')

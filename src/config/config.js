@@ -9,5 +9,6 @@ export default {
     jwtPrivateKEY: process.env.JWT_PRIVATE_KEY,
     keyCookieForJWT: process.env.KEY_COOKIE_JWT,
     mailGmail: process.env.MAIL_GMAIL,
-    passGmail: process.env.PASS_GMAIL
+    passGmail: process.env.PASS_GMAIL,
+    node_env: process.env.NODE_ENV || 'development'
 }

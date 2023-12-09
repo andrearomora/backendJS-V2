@@ -7,32 +7,32 @@
                     <div class="title">
                         <div class="row border-bottom">
                             <div class="col"><h4><b>Bolsa de compra</b></h4></div>
-                            <div class="col align-self-center text-right text-muted">3 items</div>
+                            <div class="col align-self-center text-right text-muted">{{result.items}} ITEMS</div>
                         </div>
                     </div>    
-
+                    
+                {{#each result.products}}
                     <div class="row border-bottom">
                         <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                            <div class="col-2"><img class="img-fluid" src={{this.thumbnail}}></div>
                             <div class="col">
-                                <div class="row text-muted">Shirt</div>
-                                <div class="row">Cotton T-shirt</div>
+                                <div class="row text-muted">{{this.title}}</div>
                             </div>
                             <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                                <span href="#" class="border" style="padding:5px;">{{this.quantity}}</span>
                             </div>
-                            <div class="col">$ 44.00 <span class="close">&#10005;</span></div>
+                            <div class="col">$ {{this.price}}</div>
                         </div>
                     </div>
-                    
+                {{/each}}  
                     <div class="back-to-shop"><a href="/shop">&leftarrow;</a><span class="text-muted">Volver a la tienda</span></div>
                 </div>
                 <div class="col-md-4 summary">
                     <div><h5><b>Resumen</b></h5></div>
                     <hr>
                     <div class="row">
-                        <div class="col" style="padding-left:0;">ITEMS 3</div>
-                        <div class="col text-right">$ 132.00</div>
+                        <div class="col" style="padding-left:0;">ITEMS → </div>
+                        <div class="col text-right">{{result.items}}</div>
                     </div>
                     <div class="row">
                         <div class="col" style="padding-left:0;">ENVÍO</div>
@@ -40,9 +40,12 @@
                     </div>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TOTAL</div>
-                        <div class="col text-right">$ 137.00</div>
+                        <div class="col text-right">$ {{result.total}}</div>
                     </div>
-                    <button class="btn">CHECKOUT</button>
+
+                    <form action="/api/carts/{{result.cartId}}/purchase" method="post">
+                        <button type="submit">CHECKOUT</button>
+                    </form>
                 </div>
             </div>
             

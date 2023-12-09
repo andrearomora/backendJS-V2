@@ -12,7 +12,7 @@ router.put('/:cid', updateCart)
 router.delete('/:cid', deleteCart)
 router.post('/:cid/product/:pid',  passportJWT(), auth('user'), addProductCart)
 
-router.delete('/:cid/product/:pid',  passportJWT(), auth('user'), deleteProductCart)
+router.delete('/:cid/productd/:pid',  passportJWT(), auth('user'), deleteProductCart)
 router.post('/:cid/purchase',  passportJWT(), auth('user'), purchaseCart)
 
 export default router

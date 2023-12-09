@@ -12,14 +12,14 @@ export default class TicketRepository {
     }
     getTickets = async () => { return await this.dao.getTickets() }
     getTicketById = async (tid) => { return await this.dao.getTicketById(tid) }
-    saveTicket = async (user,total, productsToBuy) => { 
+    saveTicket = async (cart) => { 
 
         try {
             const ticketToInsert = {
                 code: await this.newCode(),
                 purchase_datetime: new Date(),
-                amount: total,
-                purchaser: user.email,
+                amount: cart.total,
+                purchaser: cart.owner,
                 state: 'completed'
             }
             
@@ -27,13 +27,8 @@ export default class TicketRepository {
             return ticketToInsert
             
         } catch (error) {
-            return (productsToBuy, error)
+            return (cart, error)
         }
          
     }
-
-    updateTicket = async() => {
-
-    }
-
 }

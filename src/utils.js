@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 import config from './config/config.js'
 import passport from 'passport'
 import bcryptjs from 'bcryptjs'
+import { faker } from "@faker-js/faker";
 
 const PRIVATE_KEY = config.jwtPrivateKEY
 const KEY_COOKIE_JWT = config.keyCookieForJWT
@@ -66,3 +67,17 @@ export const authToken = (req, res, next) => {
 export const extractCookie = req => {
     return (req && req.cookies) ? req.cookies[KEY_COOKIE_JWT] : null
 }
+
+export const generateProducts = () => {
+    return {
+      title: faker.commerce.productName(),
+      description: '',
+      price: faker.commerce.price(),
+      stock: faker.datatype.number(),
+      id: faker.database.mongodbObjectId(),
+      thumbnail: faker.image.imageUrl(),
+      category: "totebags",
+      owner: "admin",
+      status: true
+    }
+  }

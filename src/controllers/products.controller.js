@@ -1,9 +1,10 @@
 import { productService } from "../services/index.js"
+import { logger } from '../config/logger.js'
 
 export const getProducts = async(req,res) => {
-    const categorySort = req.params || "all"
+    const categorySort = req.params.category || "all"
     const result = await productService.getProducts(categorySort)
-    console.log(result)
+    logger.debug(result)
     res.send({status: 'success', payload: result})
 }
 

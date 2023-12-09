@@ -1,7 +1,7 @@
 import { Router } from "express"
-//import { isAuthenticated } from "../controllers/session.controller.js"
 import { authToken, passportJWT } from '../utils.js'
 import config from "../config/config.js"
+import { logger } from "../config/logger.js"
 import { cartService, productService } from "../services/index.js"
 
 const router = Router()
@@ -22,16 +22,23 @@ router.get('/register', async (req, res) => {
 router.get('/cart', passportJWT(), async (req, res) => {
     const cartId = req.user.cart
     const cart = await cartService.getCartById(cartId)
+    const products = cart.products
 
-    cart.products.forEach(prod => {
-        
-    });
-
-    res.render('cart', {cart})
+    const result = {
+        cartId,
+        items: cart.items,
+        total: cart.total,
+        products: products
+    }
+    
+    res.render('cart', {result})
+    
 })
 
 router.get('/shop', passportJWT(), async (req, res) => {
     const sort = req.query?.category || "all"
+    const products = await productService.getProducts(sort)
+    logger.debug(products)
     let result = {}
 
     if (req.cookies[config.keyCookieForJWT]) {
@@ -69,7 +76,7 @@ router.get('/product/:pid', passportJWT(), async (req, res) => {
     if(req.user.role == 'admin' || req.user.email == prod.owner) result.cantEdit = true
     else result.cantEdit = false
 
-    console.log(result)
+    logger.debug(result)
     res.render('productDetail', {result})
 })
 

@@ -1,5 +1,6 @@
 import config from "../config/config.js"
 import nodemailer from 'nodemailer'
+import { logger } from '../config/logger.js'
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
@@ -27,6 +28,6 @@ export const sendMail = async (req,res) => {
         `,
         attachements: []
     })
-    console.log(result)
+    logger.debug(result)
     res.send('Email sent')
 }

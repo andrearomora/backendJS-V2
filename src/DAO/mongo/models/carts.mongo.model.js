@@ -6,7 +6,11 @@ const CartModel = mongoose.model('carts', new mongoose.Schema({
             type: mongoose.SchemaTypes.ObjectId,
             ref:'products'
         },
-        quantity: { type: Number}
+        quantity: { type: Number },
+        title: { type: String },
+        price: { type: Number, default: 0 },
+        thumbnail: { type: String },
+
     }],
     default: [],
     items: {type: Number, default: 0},

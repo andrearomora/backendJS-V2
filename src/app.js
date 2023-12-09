@@ -12,6 +12,7 @@ import passport from 'passport'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
 import handlebars from 'express-handlebars'
+import { logger, addLogger } from '../src/config/logger.js'
 
 const app =  express()
 
@@ -40,5 +41,16 @@ app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
 app.use('/session', sessionRouter)
 app.use('/mail', mailRouter)
+app.use(addLogger)
 
-app.listen(config.port, () => console.log('Listening... '))
+app.get('/loggerTest', (req,res) => {
+    req.logger.fatal(`FATAL!!!!`)
+    req.logger.error(`Se cayo el server`)
+    req.logger.warning(`Dont worry... Warnning`)
+    req.logger.info(`Se llamo a esta URL`)
+    req.logger.http(`This is http`)
+    req.logger.debug(`1+1===2`)
+    res.send('Test finished')
+})
+
+app.listen(config.port, () => logger.info(`Listening...`))
