@@ -35,6 +35,13 @@ p, label, option, input, select {
   .btn:hover {
     background-color: #01a27f; }
 
+.btn-transparent {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+  box-shadow: rgba(255, 255, 255, 0);
+  padding: 30px;
+}
+
 .center {
   text-align: center;
   margin: 0 auto; }

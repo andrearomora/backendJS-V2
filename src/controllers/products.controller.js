@@ -4,7 +4,6 @@ import { logger } from '../config/logger.js'
 export const getProducts = async(req,res) => {
     const categorySort = req.params.category || "all"
     const result = await productService.getProducts(categorySort)
-    logger.debug(result)
     res.send({status: 'success', payload: result})
 }
 
@@ -19,12 +18,6 @@ export const getProductById = async(req,res) => {
     const result = await productService.getProductById(pid)
     res.send({status: 'success', payload: result})
 }
-
-// export const getProductByCode = async(req,res) => {
-//     const { pcode } = req.params
-//     const result = await productService.getProductByCode(pcode)
-//     res.send({status: 'success', payload: result})
-// }
 
 export const updateProduct = async(req,res) => {
     const { pid } = req.params

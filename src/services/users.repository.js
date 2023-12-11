@@ -13,6 +13,9 @@ export default class UserRepository {
         const userToInsert = new UserDTO(user)
         return await this.dao.saveUser(userToInsert) 
     }
+    updateUser = async (id, user) => {
+        return await this.dao.updateUser(id, user) 
+    }
     
     
 }

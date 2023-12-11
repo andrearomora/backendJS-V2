@@ -5,4 +5,5 @@ export default class User {
     getUserById = async (id) => { return await UsersModel.findOne({_id: id}).lean().exec() }
     getByEmail = async (email) => { return await UsersModel.findOne({email: email}).lean().exec() }
     saveUser = async (user) => { return await UsersModel.create(user) }
+    updateUser = async (id, user) => { return await UsersModel.updateOne({_id:id},{$set: user})}
 }

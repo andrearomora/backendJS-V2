@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { register, login, privateUser, errorUser, github, githubCallback, current } from '../controllers/session.controller.js'
+import { register, login, privateUser, errorUser, github, githubCallback, current, resetPasword, newPassword } from '../controllers/session.controller.js'
 import { passportJWT, authToken } from '../utils.js'
 import passport from 'passport'
 import config from '../config/config.js'
@@ -50,5 +50,9 @@ router.get('/current', passport.authenticate('jwt', {
     current)
 
 router.get('/error', errorUser)
+
+router.get('/restablecer', resetPasword)
+
+router.post('/restablecer/:uid/:tkp', newPassword)
 
 export default router

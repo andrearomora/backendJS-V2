@@ -8,5 +8,7 @@ export default class UserDTO {
         this.cart = user.cart
         this.social = user?.social ?? 'NN'
         this.role = user?.role ?? 'user'
+        this.tokenPassword = user?.tokenPassword ?? null
+        this.expireToken = user?.expireToken ?? null
     }
 }

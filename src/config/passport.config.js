@@ -36,7 +36,9 @@ const initializePassport = () => {
                         cart: await cartService.createCart(),
                         social: 'github',
                         role: 'user',
-                        password: ''
+                        password: '',
+                        tokenPassword: null,
+                        expireToken: null
                     }
                     user =  await userService.saveUser(JSON.stringify(newUser))
                     logger.debug('user created: ' + JSON.stringify(user))
@@ -69,7 +71,9 @@ const initializePassport = () => {
                 password:createHash(password), 
                 cart: await cartService.createCart(),
                 social: 'local', 
-                role}
+                role,
+                tokenPassword: null,
+                expireToken: null}
             const result =  await userService.saveUser(newUser)
 
             const cart = result.cart

@@ -2,7 +2,7 @@ import { Router } from "express"
 import { authToken, passportJWT } from '../utils.js'
 import config from "../config/config.js"
 import { logger } from "../config/logger.js"
-import { cartService, productService } from "../services/index.js"
+import { cartService, productService, ticketService, mailService } from "../services/index.js"
 
 const router = Router()
 
@@ -78,6 +78,73 @@ router.get('/product/:pid', passportJWT(), async (req, res) => {
 
     logger.debug(result)
     res.render('productDetail', {result})
+})
+
+router.get('/restablecer', async (req, res) => {
+    res.render('restablecer', {})
+})
+
+router.get('/correo-enviado', async (req, res) => {
+    res.render('correo-enviado', {})
+})
+
+router.get('/usuario-no-encontrado', async (req, res) => {
+    res.render('usuario-no-encontrado', {})
+})
+
+router.get('/restablecer/:uid/:tkp', async (req, res) => {
+    const result = {
+        uid: req.params.uid,
+        tkp: req.params.tkp
+    }
+    res.render('nueva-pass', {result})
+})
+
+router.get('/succes-checkout', passportJWT(), async (req, res) => {
+
+    const ticket = await ticketService.getTicketByPurchaser(req.user.email)
+
+    const result = {
+        purchaser: req.user.first_name,
+        description: 'Gracias por tu compra',
+        purchase_datetime: ticket.purchase_datetime,
+        amount: ticket.amount,
+        state: ticket.state
+    }
+
+    const data = {
+        email: req.user.email,
+        subject: `[SABIA CULTURA ECO] - Compra exitosa`,
+        html: `
+            <p>Hola ${req.user.first_name},</p>
+            <p>Gracias por la compra realizada.</p>
+            <br>
+            <ul>
+                <li><strong>Fecha de la compra: </strong>${ticket.purchase_datetime}</li>
+                <li><strong>Valor pagado: </strong>$ ${ticket.amount}</li>
+                <li><strong>Estado de la compra: </strong>${ticket.state}</li>
+            </ul>
+            <p>Tu paquete será enviado el día de mañana a su destino.</p>
+            <br>
+            <p>Un saludo,</p>
+        `
+    }
+
+    await mailService.sendMail(data)
+
+    res.render('checkout', {result})
+
+})
+
+router.get('/fail-checkout', passportJWT(), async (req, res) => {
+
+    const result = {
+        purchaser: req.user.first_name,
+        description: 'Pago fallido',
+    }
+
+    res.render('fail-checkout', {result})
+    
 })
 
 export default router

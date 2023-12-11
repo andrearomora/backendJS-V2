@@ -10,5 +10,6 @@ export default {
     keyCookieForJWT: process.env.KEY_COOKIE_JWT,
     mailGmail: process.env.MAIL_GMAIL,
     passGmail: process.env.PASS_GMAIL,
-    node_env: process.env.NODE_ENV || 'development'
+    node_env: process.env.NODE_ENV || 'development',
+    stripeKey: process.env.STRIPE_KEY
 }

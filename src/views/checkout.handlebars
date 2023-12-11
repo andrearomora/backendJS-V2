@@ -1,1 +1,17 @@
-<h1 class="center" style="height: 720px;">Gracias por tu compra</h1>
+<div class="container">
+    <h1 class="center" style="height: 100px; padding-top: 60px">{{result.purchaser}}, {{result.description}}</h1>
+    <strong><h3>Datos de tu compra:</h3></strong>
+    <ul style="height: 520px">
+        <li>
+            <strong>Fecha: </strong><p>{{result.purchase_datetime}}</p>
+        </li>
+        <li>
+            <strong>Valor pagado: </strong><p>{{result.amount}}</p>
+        </li>
+        <li>
+            <strong>Estado de la compra: </strong><p>{{result.state}}</p>
+        </li>
+    </ul>
+</div>
+
+

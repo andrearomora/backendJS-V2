@@ -1,48 +1,28 @@
 <div class="container">
-
-{{!-- <div class="center">
-    <h1>LOGIN</h1>
-
-    <form action="/session/login" method="post" class="center">
-        <span>Email</span><input type="text" name="email">
-        <br>
-        <span>Password</span> <input type="text" name="password">
-        <br>
-        <button type="submit" class="btn">LOGIN</button>
-        <br>
-    </form>
-    <hr>
-    <a href="/register" >Register</a>
-    <hr>
-    <a href="/session/github" class="btn">😺 LOGIN GITHUB</a>
-</div> --}}
-
-<main class="form-signin w-50 m-auto mb-5 mt-5">
-    <form action="/session/login" method="post">
-        <h1>LOGIN</h1>
-
-        <div class="form-floating">
-            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
-
-        <div class="checkbox mb-3">
-            <label>
-                <p>¿Aún no tienes cuenta?</p>
-                <a href="/register" >Registrate</a>
-            </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-    </form>
-    <hr>
-    <h3 class="center mb-3">Otras opciones de inicio de sesión</h3>
-    <a href="/session/github" class="w-100 btn btn-lg btn-secundary">😺 LOGIN GITHUB</a>
-</main>
-
+    <main class="form-signin w-50 m-auto mb-5 mt-5">
+        <form action="/session/login" method="post">
+            <h1>LOGIN</h1>
     
-
+            <div class="form-floating">
+                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <a href="/restablecer" >¿Olvidaste tu contraseña?</a>
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
+        <br>
+        <p><strong>¿Aún no tienes cuenta?</strong></p>
+        <a href="/register" >Registrate</a>
+        <hr>
+        <h3 class="center mb-3">Otras opciones de inicio de sesión</h3>
+        <a href="/session/github" class="w-100 btn btn-lg btn-secundary">😺 LOGIN GITHUB</a>
+    </main>
 </div>

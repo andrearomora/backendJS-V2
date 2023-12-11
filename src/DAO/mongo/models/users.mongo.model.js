@@ -11,7 +11,9 @@ const UsersModel = new mongoose.model('users', new mongoose.Schema({
     cart: {
         type: mongoose.SchemaTypes.ObjectId,
         ref:'carts'
-    }
+    },
+    tokenPassword: { type: String, default: null },
+    expireToken: { type: Date, default: null }
 }))
 
 export default UsersModel
