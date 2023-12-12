@@ -1,5 +1,19 @@
 import { userService } from "../services/index.js"
 import { logger } from "../config/logger.js"
+// import { multer } from 'multer'
+// import { path } from 'path'
+
+
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads/profiles')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + path.extname(file.originalname))
+//     }
+// })
+
+// export const upload = multer({storage: storage})
 
 export const getUsers = async(req,res) => {
     const result = await userService.getUsers()

@@ -6,7 +6,6 @@ import productRouter from './routes/products.router.js'
 import cartRouter from './routes/carts.router.js'
 import sessionRouter from './routes/session.router.js'
 import viewsRouter from './routes/views.router.js'
-//import mailRouter from './routes/mail.router.js'
 import initializePassport from "./config/passport.config.js"
 import passport from 'passport'
 import session from 'express-session'
@@ -40,7 +39,6 @@ app.use('/api/users', usersRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
 app.use('/session', sessionRouter)
-//app.use('/mail', mailRouter)
 app.use(addLogger)
 
 app.get('/loggerTest', (req,res) => {
