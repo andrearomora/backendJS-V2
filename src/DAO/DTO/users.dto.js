@@ -10,5 +10,7 @@ export default class UserDTO {
         this.role = user?.role ?? 'user'
         this.tokenPassword = user?.tokenPassword ?? null
         this.expireToken = user?.expireToken ?? null
+        this.documents = user?.documents ?? []
+        this.last_connection = user?.last_connection
     }
 }

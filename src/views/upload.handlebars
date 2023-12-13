@@ -1,0 +1,21 @@
+<div class="container" style="height: 30vh; margin-top:50px;">
+    <form action="/api/users/{{uid}}/documents" method="POST" enctype="multipart/form-data">
+
+        <label for="profile">Foto de perfil:</label>
+        <input type="file" name="profile" id="profile">
+        <br>
+        <label for="product">Foto de producto:</label>
+        <input type="file" name="product" id="product">
+        <br>
+        <label for="documentType">Documento</label>
+        <select name="documentType" id="documentType">
+            <option value="identificacion">Identificación</option>
+            <option value="domicilio">Comprobante de domicilio</option>
+            <option value="estadoCuenta">Comprobante de estado de cuenta</option>
+        </select>
+        <input type="file" name="document" id="document">
+        <br>
+        <input type="submit" value="SUBIR">
+
+    </form>
+</div>

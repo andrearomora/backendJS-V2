@@ -1,19 +1,68 @@
 import { userService } from "../services/index.js"
 import { logger } from "../config/logger.js"
-// import { multer } from 'multer'
-// import { path } from 'path'
+import multer from 'multer'
+import __dirname from "../utils.js"
 
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'uploads/profiles')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-// })
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        switch (file.fieldname) {
+            case 'profile':
+                cb(null, './src/public/uploads/profiles');
+                break;
+            case 'product':
+                cb(null, './src/public/uploads/products');
+                break;
+            case 'document':
+                cb(null, './src/public/uploads/documents');
+                break;
+        }  
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
 
-// export const upload = multer({storage: storage})
+export const upload = multer({storage: storage}).fields([
+    { name: 'profile', maxCount: 1},
+    { name: 'product', maxCount: 1},
+    { name: 'document', maxCount: 1}
+])
+
+export const uploadUserFile = async(req,res) => {
+    const { uid } = req.params
+    const { documentType } = req.body
+    const { profile, product, document } = req.files;
+    const user = await userService.getUserById(uid)
+    const userDocs = user.documents || []
+    user.documents = userDocs
+
+    if(profile){
+        userDocs.push({
+            type: 'profile',
+            name: profile[0].filename,
+            reference: profile[0].destination+'/'+profile[0].filename
+        }) 
+    }
+    if(product){
+        userDocs.push({
+            type: 'product',
+            name: product[0].filename,
+            reference: product[0].destination+'/'+product[0].filename
+        }) 
+    }
+    if(document){
+        userDocs.push({
+            type: documentType,
+            name: document[0].filename,
+            reference: document[0].destination+'/'+document[0].filename
+        }) 
+    }
+
+    await userService.updateUser(uid, user)
+
+    res.send({status: 'succes'})
+}
 
 export const getUsers = async(req,res) => {
     const result = await userService.getUsers()

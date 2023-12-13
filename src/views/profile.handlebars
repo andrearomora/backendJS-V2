@@ -1,0 +1,32 @@
+<div class="container" style="height: 30vh;">
+    <h1>Hola, {{result.name}}</h1>
+    <ul>
+        <li>
+            Edad: {{result.age}}
+        </li>
+        <li>
+           Rol: {{result.role}}
+        </li>
+        <li>
+            Última conexión: {{result.last_connection}}
+        </li>
+    </ul>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tipo de documento</th>
+      <th scope="col">Nombre del documento</th>
+      <th scope="col">Ver</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each result.documents}}
+        <tr>
+          <td>{{this.type}}</td>
+          <td>{{this.name}}</td>
+          <td><a href={{this.reference}}>Ver</a></td>
+        </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

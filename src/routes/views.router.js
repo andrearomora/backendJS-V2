@@ -147,4 +147,23 @@ router.get('/fail-checkout', passportJWT(), async (req, res) => {
     
 })
 
+router.get('/upload', passportJWT(), async (req, res) => {
+    const uid = req.user._id
+
+    res.render('upload', {uid})
+})
+
+router.get('/profile', passportJWT(), async (req, res) => {
+    console.log(req.user);
+    const result = {
+        name: req.user.first_name + ' ' +req.user.last_name,
+        age: req.user.age,
+        role: req.user.role,
+        documents: req.user.documents,
+        last_connection: req.user.last_connection
+    }
+
+    res.render('profile', {result})
+})
+
 export default router

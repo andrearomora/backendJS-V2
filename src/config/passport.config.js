@@ -15,9 +15,9 @@ const initializePassport = () => {
 
     passport.use('github', new GithubStrategy(
         {
-            clientID: 'Iv1.95aa3e7d85345c73',
-            clientSecret: 'dee1a2a092730055b557cf27f661402f67666840',
-            callbackURL: 'http://127.0.0.1:8080/session/githubcallback'
+            clientID: config.githubClientId,
+            clientSecret: config.githubClientSecret,
+            callbackURL: config.githubCallbackURL
         }, 
         async (accesToken, refreshToken, profile, done) => {
             logger.info(JSON.stringify(profile))
@@ -38,7 +38,9 @@ const initializePassport = () => {
                         role: 'user',
                         password: '',
                         tokenPassword: null,
-                        expireToken: null
+                        expireToken: null,
+                        documents:[],
+                        last_connection: Date.now()
                     }
                     user =  await userService.saveUser(JSON.stringify(newUser))
                     logger.debug('user created: ' + JSON.stringify(user))
@@ -73,7 +75,9 @@ const initializePassport = () => {
                 social: 'local', 
                 role,
                 tokenPassword: null,
-                expireToken: null}
+                expireToken: null,
+                documents:[],
+                last_connection: Date.now()}
             const result =  await userService.saveUser(newUser)
 
             const cart = result.cart
@@ -98,6 +102,8 @@ const initializePassport = () => {
         if(!isValidPassword(user, password)) {
             return done(null, false) 
         }
+        user.last_connection = Date.now()
+        await userService.updateUser(user._id, user)
         return done(null, user)
     }))
 

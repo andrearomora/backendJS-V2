@@ -13,7 +13,15 @@ const UsersModel = new mongoose.model('users', new mongoose.Schema({
         ref:'carts'
     },
     tokenPassword: { type: String, default: null },
-    expireToken: { type: Date, default: null }
+    expireToken: { type: Date, default: null },
+    documents: [
+        {
+            type: { type: String },
+            name: { type: String },
+            reference: { type: String }
+        }
+    ],
+    last_connection: { type: Date }
 }))
 
 export default UsersModel
