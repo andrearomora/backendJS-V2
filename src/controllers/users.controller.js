@@ -86,11 +86,23 @@ export const changeRole = async(req,res) => {
     const user = await userService.getUserById(req.params.uid)
 
     if (user.role == "user") {
-        user.role = "premium"
-        req.user = user
-        logger.info('Role: '+ user.role)
+        let identificacion = false
+        let domicilio = false
+        let estadoCuenta = false
+        for (const doc of user.documents) {
+            if (doc.type == "identificacion") {identificacion=true}
+            if (doc.type == "domicilio") {domicilio=true}
+            if (doc.type == "estadoCuenta") {estadoCuenta=true}
+        }
+        if(identificacion==true && domicilio==true && estadoCuenta==true){
+            user.role = "premium"
+            req.user = user
+            logger.info('Role: '+ user.role)
+        }else{
+            res.send({status: 'error', payload: 'No ha terminado de procesar su documentación'})
+            return
+        }
         await userService.updateUser(user._id, user)
-        
         res.send({status: 'success', payload: user})
         return
     }else{
