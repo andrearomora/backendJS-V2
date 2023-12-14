@@ -8,15 +8,7 @@ export default class ProductRepository {
 
     getProducts = async (categorySort) => { return await this.productDAO.getProducts(categorySort) }
     getProductById = async (tid) => { return await this.productDAO.getProductById(tid) }
-    getProductByCode = async(pcode) => {
-        const products = await this.productDAO.getProducts()
-        products.forEach(p => {
-            if(p.code === pcode){
-                return p
-            }
-        })
-        res.send("Product not found")
-    }
+    getProductByCode = async(code) => { return await this.productDAO.getProductByCode(code) }
     createProduct = async (product) => { 
         const productExist = await this.productDAO.getProductByCode(product.code);
         if (productExist) {

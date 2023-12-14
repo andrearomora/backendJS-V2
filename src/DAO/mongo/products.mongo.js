@@ -11,5 +11,6 @@ export default class Product {
     getProductById = async (id) => { return await ProductsModel.findOne({_id: id}) }
     createProduct = async (product) => { return await ProductsModel.create(product) }
     updateProduct = async (id,product) => { return await ProductsModel.findByIdAndUpdate(id, product) }
-    deleteProduct = async (id) => { return await ProductsModel.deleteOne({_id: id})
-}}
+    deleteProduct = async (id) => { return await ProductsModel.deleteOne({_id: id})}
+    getProductByCode = async (code) => { return await ProductsModel.findOne({code: code}) }
+}

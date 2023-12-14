@@ -10,4 +10,5 @@ router.get('/:pid', getProductById)
 router.put('/:pid', passportJWT(), auth('admin' || 'premium'), updateProduct)
 router.delete('/:pid', passportJWT(), auth('admin' || 'premium'), deleteProduct)
 
+
 export default router
