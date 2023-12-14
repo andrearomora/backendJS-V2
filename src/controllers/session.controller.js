@@ -28,7 +28,7 @@ export const login = async(req,res) => {
 
         const token = generateToken(req.user)
         req.user.token = token
-        return res.cookie(cookieJWT, req.user.token).redirect('/')
+        res.cookie(cookieJWT, req.user.token).redirect('/')
     }
 
 export const privateUser = async (req, res) => {

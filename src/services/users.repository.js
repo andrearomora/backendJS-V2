@@ -7,6 +7,7 @@ export default class UserRepository {
     }
 
     getUsers = async () => { return await this.dao.getUsers() }
+    getCensoredUsers = async () => { return await this.dao.getCensoredUsers() }
     getUserById = async (id) => { return await this.dao.getUserById(id) }
     getByEmail = async (email) => { return await this.dao.getByEmail(email) }
     saveUser = async (user) => { 

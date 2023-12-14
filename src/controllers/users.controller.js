@@ -69,6 +69,11 @@ export const getUsers = async(req,res) => {
     res.send({status: 'success', payload: result})
 }
 
+export const getCensoredUsers = async(req,res) => {
+    const result = await userService.getCensoredUsers()
+    res.send({status: 'success', payload: result})
+}
+
 export const getUserById = async(req,res) => {
     const { uid } = req.params
     const result = await userService.getUserById(uid)
