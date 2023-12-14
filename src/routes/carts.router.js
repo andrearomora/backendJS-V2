@@ -10,9 +10,9 @@ router.post('/', createCart)
 router.get('/:cid', getCartById)
 router.put('/:cid', updateCart)
 router.delete('/:cid', deleteCart)
-router.post('/:cid/product/:pid',  passportJWT(), auth('user'), addProductCart)
+router.post('/:cid/product/:pid',  passportJWT(), auth('user' || 'premium'), addProductCart)
 
-router.post('/:cid/productd/:pid',  passportJWT(), auth('user'), deleteProductCart)
-router.post('/:cid/purchase',  passportJWT(), auth('user'), purchaseCart)
+router.post('/:cid/productd/:pid',  passportJWT(), auth('user' || 'premium'), deleteProductCart)
+router.post('/:cid/purchase',  passportJWT(), auth('user' || 'premium'), purchaseCart)
 
 export default router

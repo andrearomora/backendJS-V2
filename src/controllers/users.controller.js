@@ -1,4 +1,4 @@
-import { userService } from "../services/index.js"
+import { userService, mailService } from "../services/index.js"
 import { logger } from "../config/logger.js"
 import multer from 'multer'
 import __dirname from "../utils.js"
@@ -118,4 +118,32 @@ export const changeRole = async(req,res) => {
         res.send({status: 'success', payload: user})
         return
     }
+}
+
+export const deleteUsers = async(req,res) => {
+    const users = await userService.getUsers()
+    const deletedUsers = []
+    let time = Date.now() - 172800000
+    console.log(time);
+    for (const user of users) {
+        if (user.last_connection < time){
+            let email = user.email
+            await userService.deleteUser(user._id)
+            const data = {
+                email,
+                subject: `[SABIA CULTURA ECO] - Usuario eliminado por inactividad`,
+                html: `
+                    <p>Hola ${user.first_name},</p>
+                    <p>Te enviamos este e-mail para notificar que tu cuenta ha sido eliminada por inactividad.</p>
+                    <p>Recuerda que nuestras políticas recomiendan no estar más de dos días sin ingresar al sistema<p>
+                    <br>
+                    <p>Un saludo,</p>
+                `
+            }
+            await mailService.sendMail(data)
+            deletedUsers.push(email)
+        }
+    }
+    res.send({status: 'success', payload: deletedUsers})
+    return
 }
