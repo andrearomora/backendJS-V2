@@ -1,0 +1,17 @@
+<div class="container" style="height: 50vh; margin-top:50px;">
+    <a href="/profile">← Volver</a>
+
+    <form action="/api/users/edit/{{user._id}}" method="POST">
+
+        <label for="rol"><strong>Selecione el nuevo rol</strong></label>
+        <br>
+        <select name="rol" id="rol">
+            <option value="user">Usuario</option>
+            <option value="premium">Premium</option>
+            <option value="admin">Administrador</option>
+        </select>
+        <br><br>
+        <input type="submit" class="btn" value="EDITAR">
+
+    </form>
+</div>

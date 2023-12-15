@@ -1,0 +1,30 @@
+<div class="container" style="height: 80vh; margin-top: 20px;">
+    <h1>USUARIOS</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo electrónico</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Editar rol</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+            <tr>
+                <td>{{this.first_name}} {{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.role}}</td>
+                <td><a href="/edit/{{this._id}}" class="btn-transparent"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td>
+                    <form action="/api/users/delete/{{this._id}}" method="post">
+                        <button type="submit" class="btn-transparent"><span class="fa-solid fa-trash"></span></button>
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+</div>

@@ -12,12 +12,14 @@
         </li>
     </ul>
     <a href="/upload" class="btn">Cargar documentos</a>
+    {{#if result.admin}}
+      <a href="/users" class="btn">USUARIOS</a>
+    {{/if}}
     <table class="table">
       <thead>
         <tr>
           <th scope="col">Tipo de documento</th>
           <th scope="col">Nombre del documento</th>
-          <th scope="col">Ver</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +27,6 @@
             <tr>
               <td>{{this.type}}</td>
               <td>{{this.name}}</td>
-              <td><a href={{this.reference}}>Ver</a></td>
             </tr>
         {{/each}}
       </tbody>

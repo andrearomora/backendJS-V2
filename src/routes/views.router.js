@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { authToken, passportJWT } from '../utils.js'
+import { auth, authToken, passportJWT } from '../utils.js'
 import config from "../config/config.js"
 import { logger } from "../config/logger.js"
-import { cartService, productService, ticketService, mailService } from "../services/index.js"
+import { cartService, productService, ticketService, mailService, userService } from "../services/index.js"
 
 const router = Router()
 
@@ -155,15 +155,34 @@ router.get('/upload', passportJWT(), async (req, res) => {
 
 router.get('/profile', passportJWT(), async (req, res) => {
     console.log(req.user);
+    let admin = false
+
+    if(req.user.role === 'admin'){
+        admin = true
+    }
+
     const result = {
         name: req.user.first_name + ' ' +req.user.last_name,
         age: req.user.age,
         role: req.user.role,
         documents: req.user.documents,
-        last_connection: req.user.last_connection
+        last_connection: req.user.last_connection,
+        admin
     }
 
     res.render('profile', {result})
+})
+
+router.get('/users', passportJWT(), auth('admin'), async (req, res) => {
+    const users = await userService.getCensoredUsers()
+    res.render('users', {users})
+})
+
+router.get('/edit/:uid', passportJWT(), auth('admin'), async (req, res) => {
+    const {uid} = req.params
+    const user = await userService.getUserById(uid)
+
+    res.render('edit-user', {user})
 })
 
 export default router

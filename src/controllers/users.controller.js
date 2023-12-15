@@ -154,3 +154,13 @@ export const deleteOneUser = async(req,res) => {
     res.send({status: 'success', payload: uid})
     return
 }   
+
+export const editUser = async(req,res) => {
+    const { uid } = req.params
+    const { rol } = req.body
+    const user = await userService.getUserById(uid)
+    user.role = rol
+    await userService.updateUser(uid, user)
+    res.send({status: 'success', payload: user})
+    return
+}
