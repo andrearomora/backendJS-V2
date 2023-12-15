@@ -147,3 +147,10 @@ export const deleteUsers = async(req,res) => {
     res.send({status: 'success', payload: deletedUsers})
     return
 }
+
+export const deleteOneUser = async(req,res) => {
+    const { uid } = req.params
+    await userService.deleteOneUser(uid)
+    res.send({status: 'success', payload: uid})
+    return
+}   

@@ -42,8 +42,8 @@ const initializePassport = () => {
                         documents:[],
                         last_connection: Date.now()
                     }
-                    user =  await userService.saveUser(JSON.stringify(newUser))
-                    logger.debug('user created: ' + JSON.stringify(user))
+                    user =  await userService.saveUser(newUser)
+                    logger.debug('user created: ' + JSON.stringify(newUser))
                 }
 
                 return done(null, user)

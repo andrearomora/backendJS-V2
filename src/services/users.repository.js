@@ -20,5 +20,8 @@ export default class UserRepository {
     deleteUser = async (uid) => {
         return await this.dao.deleteUser(uid)
     }
+    deleteOneUser = async (uid) => {
+        return await this.dao.deleteOneUser(uid)
+    }
     
 }

@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const UsersModel = new mongoose.model('users', new mongoose.Schema({
+const UsersModel = mongoose.model('users', new mongoose.Schema({
     email: { type: String, require: true, unique: true },
     first_name: { type: String, require: true },
     last_name: { type: String, require: true },

@@ -1,4 +1,4 @@
-<div class="container" style="height: 30vh;">
+<div class="container" style="height: 80vh; margin-top: 20px;">
     <h1>Hola, {{result.name}}</h1>
     <ul>
         <li>
@@ -11,22 +11,23 @@
             Última conexión: {{result.last_connection}}
         </li>
     </ul>
+    <a href="/upload" class="btn">Cargar documentos</a>
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Tipo de documento</th>
-      <th scope="col">Nombre del documento</th>
-      <th scope="col">Ver</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each result.documents}}
+      <thead>
         <tr>
-          <td>{{this.type}}</td>
-          <td>{{this.name}}</td>
-          <td><a href={{this.reference}}>Ver</a></td>
+          <th scope="col">Tipo de documento</th>
+          <th scope="col">Nombre del documento</th>
+          <th scope="col">Ver</th>
         </tr>
-    {{/each}}
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+        {{#each result.documents}}
+            <tr>
+              <td>{{this.type}}</td>
+              <td>{{this.name}}</td>
+              <td><a href={{this.reference}}>Ver</a></td>
+            </tr>
+        {{/each}}
+      </tbody>
+    </table>
 </div>
