@@ -1,0 +1,56 @@
+paths:
+    /api/carts:
+        get:
+            summary: Obtiene todos los carritos
+            tags:
+                - carts
+            responses:
+                "200":
+                    description: Los carritos fueron devueltos satisfactoriamente
+        post:
+            summary: Permite crear un carrito en base de datos
+            tags:
+                - carts
+    /api/carts/{:cid}:
+        get:
+            summary: Obtiene un carrito por su ID
+            parameters:
+                - name: "cid"
+                  in: "path"
+                  required: true
+                  description: "ID del carrito a obtener"
+                  schema:
+                        type: "string"
+            tags:
+                - carts
+            responses:
+                "200":
+                    description: El carrito fue devuelto satisfactoriamente
+                "404":
+                    description: No se encontró el carrito por ese ID
+        put:
+            summary: Permite actualizar la información de un carrito
+            operationId: "updateCart"
+            parameters:
+                - name: "cid"
+                  in: "path"
+                  required: true
+                  description: "ID del carrito a actualizar"
+                  schema:
+                        type: "string"
+            tags:
+                - carts
+            responses:
+                "200":
+                        description: "Éxito"
+        delete:
+            summary: Permite eliminar un carrito
+            parameters:
+                - name: "cid"
+                  in: "path"
+                  required: true
+                  description: "ID del carrito a eliminar"
+                  schema:
+                        type: "string"
+            tags:
+                - carts

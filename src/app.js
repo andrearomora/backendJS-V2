@@ -1,6 +1,8 @@
 import express from "express"
 import config from './config/config.js'
 import __dirname from './utils.js'
+import swaggerJsdoc from "swagger-jsdoc"
+import swaggerUiExpress from "swagger-ui-express"
 import usersRouter from './routes/users.router.js'
 import productRouter from './routes/products.router.js'
 import cartRouter from './routes/carts.router.js'
@@ -18,6 +20,21 @@ const app =  express()
 app.use("/public", express.static(__dirname + "/public"))
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
+
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.1',
+        info: {
+            title: 'Documentación de la web SABIA CULTURA ECO',
+            description: 'El proyecto se trata de una eccomerce para la venta de bolsas ecológicas'
+        }
+    },
+    apis: [`${__dirname}/docs/**/*.yaml`]
+}
+
+const specs = swaggerJsdoc(swaggerOptions)
+console.log(__dirname + specs);
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 app.use(cookieParser())
 app.use(session({

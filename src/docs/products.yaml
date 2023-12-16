@@ -1,0 +1,150 @@
+paths:
+    /api/products:
+        get:
+            summary: Obtiene todos los productos
+            tags:
+                - products
+            responses:
+                "200":
+                    description: Los productos fueron devueltos satisfactoriamente
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#components/requestBodies/insertProduct'
+        post:
+            summary: Obtiene los datos del usuario, luego valida los permisos del usuario y finalmente permite insertar un PRODUCTO para su creación en base de datos
+            security:
+                - passportJWT: []
+            tags:
+                - products
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#components/requestBodies/insertProduct'
+    /api/products/{:pid}:
+        get:
+            summary: Obtiene un producto por su ID
+            parameters:
+                - name: "pid"
+                  in: "path"
+                  required: true
+                  description: "ID del producto a obtener"
+                  schema:
+                        type: "string"
+            tags:
+                - products
+            responses:
+                "200":
+                    description: El producto fue devuelto satisfactoriamente
+                "404":
+                    description: No se encontró el producto por ese ID
+        put:
+            summary: Obtiene los datos del usuario, luego valida los permisos del usuario y finalmente permite actualizar la información de un producto
+            operationId: "updateProduct"
+            security:
+                - passportJWT: []
+            parameters:
+                - name: "pid"
+                  in: "path"
+                  required: true
+                  description: "ID del producto a actualizar"
+                  schema:
+                        type: "string"
+            responses:
+                "200":
+                        description: "Éxito"
+            tags:
+                - admin
+                - premium
+        delete:
+            summary: Obtiene los datos del usuario, luego valida los permisos del usuario y finalmente permite eliminar un producto
+            security:
+                - passportJWT: []
+            parameters:
+                - name: "pid"
+                  in: "path"
+                  required: true
+                  description: "ID del producto a obtener"
+                  schema:
+                        type: "string"
+            tags:
+                - admin
+                - premium
+components:
+    schemas:
+        Product:
+            type: object
+            properties:
+                _id:
+                    type: ObjectId
+                    description: ID autogenerado por mongo
+                title:
+                    type: String
+                    description: Nombre del producto
+                description:
+                    type: String
+                    description: Descripción del producto
+                price:
+                    type: Number
+                    description: Precio en pesos Colombianos del producto
+                thumbnail:
+                    type: String
+                    description: Enlace a la imagen del producto
+                code:
+                    type: String
+                    description: Código único del producto generado por el usuario creador
+                stock:
+                    type: Number
+                    description: Cantidad de unidades disponibles del producto
+                status:
+                    type: Boolean
+                    description: Indica si el producto se encuentra activo o inactivo
+                owner:
+                    type: String
+                    description: Correo electrónico asociado al usuario que creó el producto
+                category:
+                    type: String
+                    description: Categoría a la que pertenece el producto, puede ser "totebags" o "adjustables"
+            example:
+                _id: ObjectId("64dfddf387b4253e92767760")
+                title: Tote Bag S
+                description: Práctica, liviana y resistente. Si eres de las personas que les gusta salir ligera y cargando apenas lo necesario, esta es tu bolsa. Tamaño perfecto para llevar tu celular, un buen libro, una botella de agua y un snack que se te antoje.
+                price: 13800
+                thumbnail: https://http2.mlstatic.com/D_NQ_NP_658540-MCO43545153264_092020-O.webp
+                code: TBS
+                stock: 23
+                status: true
+                owner: andreaesromora@gmail.com
+                category: totebags
+    requestBodies:
+        insertProduct:
+            type: object
+            properties:
+                title:
+                    type: String
+                    description: Nombre del producto
+                description:
+                    type: String
+                    description: Descripción del producto
+                price:
+                    type: Number
+                    description: Precio en pesos Colombianos del producto
+                thumbnail:
+                    type: String
+                    description: Enlace a la imagen del producto
+                code:
+                    type: String
+                    description: Código único del producto generado por el usuario creador
+                stock:
+                    type: Number
+                    description: Cantidad de unidades disponibles del producto
+                owner:
+                    type: String
+                    description: Correo electrónico asociado al usuario que creó el producto
+                category:
+                    type: String
+                    description: Categoría a la que pertenece el producto, puede ser "totebags" o "adjustables"

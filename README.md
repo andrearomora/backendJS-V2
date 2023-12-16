@@ -1,11 +1,17 @@
-# Ecommerce Back End Coder House 2023 🌍
+# Ecommerce Back End Coder House 2023 💻
 
-Proyecto Final CoderHouse 2023. Ecommerce STACK MERN -> Mongo, Express, Node.
+Proyecto Final CoderHouse 2023. Ecommerce STACK -> Mongo, Express, Handlebars, Node.
 
-# Información sobre la aplicación 📜:
+# Descripción del Proyecto 📜:
 
-* El proyecto se trata de una eccomerce para la venta de productos (de cualquier rubro)
-* En este caso he optado por cargar productos ....
+* El proyecto se trata de una eccomerce para la venta de productos
+* En este caso he desarrollado el ecommerce de SABIA CULTURA ECO, una tienda virtual de bolsas ecológicas radicada en Bogotá, Colombia.
+
+# Instalación 🔌:
+
+* Lanzar el comando "npm i" para instalaar todas las dependecias requeridas para el correcto funcionamiento del proyecto.
+* Luego correr el proyecto con "nodemon src/app.js" (se debe contar con nodemon global o local)
+* Una vez el proyecto esté en linea, se puede visualizar de manera local en la ruta http://127.0.0.1:8080
 
 # Arquitectura de la aplicación: 
 
@@ -18,21 +24,19 @@ Proyecto Final CoderHouse 2023. Ecommerce STACK MERN -> Mongo, Express, Node.
 * Se utilizan Loggers
 
 # APIs implementadas 📞:
-* API para el manejo de los productos (con websockets)
+* API para el manejo de los productos
 * API Para el manejo de las categorías
 * API para el manejo de los usuarios (Administrador,Usuario,Premium)
-* API para la manejo de la autenticacion (login-github, login-google, uso de JWT)
+* API externas para la manejo de la autenticacion (login-github, uso de JWT)
 * API para carrito de compras
-* API para un chat de soporte (con websockets)
 * API para los tickets de una compra 
-* Reestablecimiento de la contraseña del usuario
-* Verificación del correo del usuario a través de un mail con nodemailer
+* Reestablecimiento de la contraseña del usuario a través de un mail con nodemailer
 
 # Datos de interés 🏹: 
 * Persistido en una base de datos no relacional (Mongo DB)
-* Interfaz Gráfica de usuario con estilos en HTML, CSS, JS, Boostrap
-* Validaciones de formulario.
-* Documentación con 
+* Interfaz Gráfica de usuario con estilos en HTML, CSS, JS, Boostrap utilizando el motor de plantillas Handlebars
+* Validaciones de autenticación
+* Documentación con Swagger
 
 # Datos del cursado 📚:
 - **Año: 2023**
@@ -52,4 +56,3 @@ Proyecto Final CoderHouse 2023. Ecommerce STACK MERN -> Mongo, Express, Node.
 * ![EXPRESSJS](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 * ![BOOTSTRAP!](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 * ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
-* ![PRETTIER](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
